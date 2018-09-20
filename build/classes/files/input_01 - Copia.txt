@@ -1,0 +1,11 @@
+init
+	func funcao(text){
+		mostre(text);
+	}
+
+	func main(){
+		var text = "casa nossa";
+		funcao(text);
+	}
+
+end
