@@ -8,4 +8,6 @@ init
 		funcao(text);
 	}
 
+	/* comentario errado
+
 end

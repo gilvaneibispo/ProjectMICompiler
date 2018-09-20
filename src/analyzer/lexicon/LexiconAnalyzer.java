@@ -1,5 +1,6 @@
 package analyzer.lexicon;
 
+import exception.CommentFormException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -32,7 +33,7 @@ public class LexiconAnalyzer {
         this.file = file;
     }
 
-    public void init() throws IOException {
+    public void init() throws IOException, CommentFormException {
 
         System.out.println(""
                 + "\n-------------\n"
@@ -57,21 +58,20 @@ public class LexiconAnalyzer {
         this.errorPrinter();
     }
 
-    private boolean isComent() throws IOException {
+    private boolean isComent() throws IOException, CommentFormException {
 
         StringBuilder string_buffer = new StringBuilder();
 
         for (int i = 0; i < this.line_characters.length; i++) {
 
             if (this.line_characters[i] == '/') {
-                //analise(buffer, contadorLinha, tokens);
+                
                 string_buffer.append("/");
-                //int cL = contadorLinha;
                 int id_next_item = i + 1;
 
                 if (id_next_item < this.line_characters.length 
                         && this.line_characters[id_next_item] == '*') {
-                    boolean encontrou = false;
+                    boolean found_finisher = false;
 
                     do {
 
@@ -85,25 +85,27 @@ public class LexiconAnalyzer {
                                     && this.line_characters[k + 1] == '/') {
 
                                 string_buffer.append('/');
-                                encontrou = true;
+                                found_finisher = true;
                                 i = k + 1;
                                 break;
                             }
                         }
 
                         //Pulando linha dentro do comentário.
-                        if (!encontrou) {
+                        if (!found_finisher) {
+                            
                             this.line = this.buffer.readLine();
                             if (this.line != null) {
+                                
                                 i = -1;
                                 this.line_characters = line.toCharArray();
                                 string_buffer.append(" ");
-                                //contadorLinha++;
                             } else {
-                                //Criar uma exceção dizendo que o bloco não foi fechado
+                                 throw new CommentFormException();
                             }
                         }
-                    } while (!encontrou);
+                    } while (!found_finisher);
+                    
                 } else if (id_next_item < this.line_characters.length 
                         && this.line_characters[id_next_item] == '/') {
                     
