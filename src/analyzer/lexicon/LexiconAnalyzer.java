@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * @author Gilvanei
@@ -16,8 +17,10 @@ public class LexiconAnalyzer {
     private int line_count;
     private char line_characters[];
     private String name_file;
+    private ArrayList<Token> lexemas;
 
     public LexiconAnalyzer() {
+        lexemas = new ArrayList();
         this.line_count = 0;
     }
 
@@ -100,6 +103,7 @@ public class LexiconAnalyzer {
                     }
                     i = this.line_characters.length;
                 }
+                this.analystMaker(string_buffer, line_count);
                 System.out.println("Comentário na linha " + this.line_count + ": " + string_buffer);
             }
         }
@@ -112,8 +116,10 @@ public class LexiconAnalyzer {
         StringBuilder string_buffer = new StringBuilder();
 
         for (int i = 0; i < this.line_characters.length; i++) {
-            if (this.line_characters[i] == '\"') { //verifica se é uma cadeia de caracteres
-                //analise(buffer, contadorLinha, tokens);
+            if (this.line_characters[i] == '\"') {
+
+                //verifica se é uma cadeia de caracteres                
+                this.analystMaker(string_buffer, line_count);
                 string_buffer.append("\"");
 
                 for (int k = i + 1; k < this.line_characters.length; k++) {
@@ -124,9 +130,49 @@ public class LexiconAnalyzer {
                     }
                     i = k;
                 }
-                //analise(buffer, contadorLinha, tokens);
-                //buffer = new StringBuilder();
+                
+                this.analystMaker(string_buffer, line_count);
                 System.out.println("String na linha " + this.line_count + ": " + string_buffer);
+            }
+        }
+    }
+    
+    private void analystMaker(StringBuilder string_buffer, int local_line_count) {
+        
+        String lexema = string_buffer.toString();
+        
+        if (!lexema.matches("")) {
+            
+            if (lexema.matches(Helper.RESERVED_WORD)) {
+
+                lexemas.add(new Token(lexema, "Palavra Reservada", local_line_count));
+            } else if (lexema.matches(Helper.IDENTIFIER)) {
+
+                lexemas.add(new Token(lexema, "Identificador", local_line_count));
+            } else if (lexema.matches(Helper.NUMBER)) {
+                
+                lexemas.add(new Token(lexema, "Número", local_line_count));
+            } else if (lexema.matches(Helper.COMMENT_IN_LINE)) {
+                
+                lexemas.add(new Token(lexema, "Comentário de Linha", local_line_count));
+            } else if (lexema.matches(Helper.BLOCK_COMMENT)) {
+                
+                lexemas.add(new Token(lexema, "Comentário de Bloco", local_line_count));
+            } else if (lexema.matches(Helper.ARITHMETIC_OPERATOR)) {
+                
+                lexemas.add(new Token(lexema, "Operador Aritmético", local_line_count));
+            } else if (lexema.matches(Helper.RELATIONAL_OPERATOR)) {
+                
+                lexemas.add(new Token(lexema, "Operador Relacional", local_line_count));
+            } else if (lexema.matches(Helper.LOGICAL_OPERATOR)) {
+                
+                lexemas.add(new Token(lexema, "Operador Lógico", local_line_count));
+            } else if (lexema.matches(Helper.DELIMITER)) {
+                
+                lexemas.add(new Token(lexema, "Delimitador", local_line_count));
+            } else {
+                
+                lexemas.add(new Token(lexema, "Expressão não identificada", local_line_count));
             }
         }
     }
