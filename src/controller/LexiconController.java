@@ -16,8 +16,8 @@ public class LexiconController {
     public LexiconController() {
         try {
             la = new LexiconAnalyzer();
-        } catch (Exception e) {
-
+        } catch (IOException e) {
+            e.getStackTrace();
         }
     }
 
@@ -31,8 +31,8 @@ public class LexiconController {
             } else {
                 //Criar exceção com aviso de erro de leitura.
             }
-        } catch (Exception e) {
-
+        } catch (CommentFormException | IOException e) {
+            e.getStackTrace();
         }
     }
 }

@@ -2,9 +2,7 @@ package compiler;
 
 import analyzer.lexicon.Helper;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import util.Debug;
 
 /**
@@ -23,7 +21,7 @@ public class MainClass {
         System.out.println("Diretório: " + base_dir.getName());
 
         /* Verificar tbm se é um caminho válido e se tá vazio */
-        if (base_dir.isDirectory()) {
+        if (base_dir.isDirectory() && base_dir.exists()) {
 
             String output_file_path = base_dir.getParentFile() + "\\output";
 
@@ -42,20 +40,25 @@ public class MainClass {
             File[] files = base_dir.listFiles();
 
             if (files.length != 0) {
-                
+
+                System.out.println("-------------");
+                System.out.println("Iniciando análise lexica:");
+                System.out.println("-------------");
+
                 for (File file : files) {
-                    
+
                     if (!file.isDirectory() && file.isFile()) {
+                        System.out.println("Analisando arquivo " + file.getName() + "...");
                         FACADE.analyzerLexicon(file);
                     }
                 }
             } else {
-                
+
                 System.err.println("Não há arquivos para análise no diretório de entrada!");
             }
 
-        }else if(!base_dir.exists()){
-            
+        } else {
+
             System.err.println("Verifique o usuário atual e o caminho da pasta de entrada!");
         }
     }

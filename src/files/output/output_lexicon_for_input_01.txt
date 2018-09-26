@@ -1,0 +1,3 @@
+Iniciando Análise Léxica para input_01.txt
+ 
+Analise Léxica concluida, não houve erros apresentados!
