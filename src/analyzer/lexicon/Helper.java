@@ -20,4 +20,35 @@ public class Helper {
     public static final String NUMBER_FAILED_1 = "[\\-]?(\\d)+(\\..*)?";
     public static final String NUMBER_FAILED_2 = "[\\-]?(\\.\\d+)?";
     public static final String BLOCK_COMMENT_2 = "^(/\\*).*";
+
+    /* terminais */
+    public static boolean isAlgo(char item_char) {
+        return item_char == 9
+                || item_char == 10
+                || item_char == 13
+                || item_char == 32
+                || item_char == '+'
+                || item_char == '%'
+                || item_char == '*'
+                || item_char == ';'
+                || item_char == ','
+                || item_char == '('
+                || item_char == ')'
+                || item_char == '['
+                || item_char == ']'
+                || item_char == '{'
+                || item_char == '}'
+                || item_char == ':'
+                || item_char == '='
+                || item_char == '!'
+                || item_char == 58;
+    }
+    
+    public static String isNielson(){
+        return "URI de nielson";
+    }
+    
+    public static String isGilvanei(){
+        return "C:\\Users\\Gilvanei\\Documents\\NetBeansProjects\\Compiler\\ProjectMICompiler\\src\\files\\input";
+    }
 }

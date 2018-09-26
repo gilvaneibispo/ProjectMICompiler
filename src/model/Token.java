@@ -1,4 +1,4 @@
-package analyzer.lexicon;
+package model;
 
 /**
  * @author Gilvanei Bispo

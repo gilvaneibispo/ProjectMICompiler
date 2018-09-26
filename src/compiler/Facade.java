@@ -2,7 +2,6 @@ package compiler;
 
 import controller.LexiconController;
 import java.io.File;
-import java.io.IOException;
 
 /**
  * @author Gilvanei Bispo
@@ -24,7 +23,7 @@ public class Facade {
         return INSTANCE;
     }
     
-    public void analyzerLexicon(File file) throws IOException{
+    public void analyzerLexicon(File file) {
         lc.init(file);
     }
 }

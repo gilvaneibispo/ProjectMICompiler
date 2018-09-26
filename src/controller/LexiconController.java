@@ -1,6 +1,7 @@
 package controller;
 
 import analyzer.lexicon.LexiconAnalyzer;
+import exception.CommentFormException;
 import java.io.File;
 import java.io.IOException;
 
@@ -13,16 +14,25 @@ public class LexiconController {
     private LexiconAnalyzer la;
 
     public LexiconController() {
-        la = new LexiconAnalyzer();
+        try {
+            la = new LexiconAnalyzer();
+        } catch (Exception e) {
+
+        }
     }
 
-    public void init(File file) throws IOException {
+    public void init(File file) {
 
-        if (file != null && file.canRead()) {            
-            la.setFile(file);
-            la.init();
-        } else {
-            //Criar exceção com aviso de erro de leitura.
+        try {
+
+            if (file != null && file.canRead()) {
+                la.setFile(file);
+                la.init();
+            } else {
+                //Criar exceção com aviso de erro de leitura.
+            }
+        } catch (Exception e) {
+
         }
     }
 }
