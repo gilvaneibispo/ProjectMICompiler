@@ -1,93 +1,85 @@
 Iniciando Análise Léxica para input_01.txt
  
-Palavra Reservada na linha 1: if
+Palavra Reservada na linha 1: ≪ if ≫
 --------------------
-Delimitador na linha 1: (
+Delimitador na linha 1: ≪ ( ≫
 --------------------
-Identificador na linha 1: casa
+Identificador na linha 1: ≪ casa ≫
 --------------------
-Operador Relacional na linha 1: =
+Operador Relacional na linha 1: ≪ == ≫
 --------------------
-Operador Relacional na linha 1: =
+Identificador na linha 1: ≪ lua ≫
 --------------------
-Identificador na linha 1: lua
+Operador Lógico na linha 1: ≪ && ≫
 --------------------
-Operador Lógico na linha 1: &&
+Identificador na linha 1: ≪ lua ≫
 --------------------
-Identificador na linha 1: lua
+Operador Relacional na linha 1: ≪ != ≫
 --------------------
-Operador Lógico na linha 1: !
+Número na linha 1: ≪ 9 ≫
 --------------------
-Operador Relacional na linha 1: =
+Delimitador na linha 1: ≪ ) ≫
 --------------------
-Número na linha 1: 9
+Delimitador na linha 1: ≪ { ≫
 --------------------
-Delimitador na linha 1: )
+Identificador na linha 2: ≪ lua ≫
 --------------------
-Delimitador na linha 1: {
+Operador Relacional na linha 2: ≪ = ≫
 --------------------
-Identificador na linha 2: lua
+Número na linha 2: ≪ 3 ≫
 --------------------
-Operador Relacional na linha 2: =
+Delimitador na linha 2: ≪ ; ≫
 --------------------
-Número na linha 2: 3
+Delimitador na linha 3: ≪ } ≫
 --------------------
-Delimitador na linha 2: ;
+Palavra Reservada na linha 3: ≪ else ≫
 --------------------
-Delimitador na linha 3: }
+Palavra Reservada na linha 3: ≪ if ≫
 --------------------
-Palavra Reservada na linha 3: else
+Delimitador na linha 3: ≪ ( ≫
 --------------------
-Palavra Reservada na linha 3: if
+Identificador na linha 3: ≪ casa ≫
 --------------------
-Delimitador na linha 3: (
+Operador Relacional na linha 3: ≪ <= ≫
 --------------------
-Identificador na linha 3: casa
+Identificador na linha 3: ≪ lua ≫
 --------------------
-Operador Relacional na linha 3: <=
+Operador Lógico na linha 3: ≪ || ≫
 --------------------
-Operador Relacional na linha 3: =
+Identificador na linha 3: ≪ casa ≫
 --------------------
-Identificador na linha 3: lua
+Operador Relacional na linha 3: ≪ >= ≫
 --------------------
-Operador Lógico na linha 3: ||
+Identificador na linha 3: ≪ lua ≫
 --------------------
-Identificador na linha 3: casa
+Delimitador na linha 3: ≪ ) ≫
 --------------------
-Operador Relacional na linha 3: >=
+Delimitador na linha 3: ≪ { ≫
 --------------------
-Operador Relacional na linha 3: =
+Identificador na linha 4: ≪ casa ≫
 --------------------
-Identificador na linha 3: lua
+Operador Relacional na linha 4: ≪ = ≫
 --------------------
-Delimitador na linha 3: )
+Número na linha 4: ≪ 4 ≫
 --------------------
-Delimitador na linha 3: {
+Delimitador na linha 4: ≪ ; ≫
 --------------------
-Identificador na linha 4: casa
+Delimitador na linha 5: ≪ } ≫
 --------------------
-Operador Relacional na linha 4: =
+Palavra Reservada na linha 5: ≪ else ≫
 --------------------
-Número na linha 4: 4
+Delimitador na linha 5: ≪ { ≫
 --------------------
-Delimitador na linha 4: ;
+Operador Aritmético na linha 6: ≪ ++ ≫
 --------------------
-Delimitador na linha 5: }
+Identificador na linha 6: ≪ lua ≫
 --------------------
-Palavra Reservada na linha 5: else
+Delimitador na linha 6: ≪ ; ≫
 --------------------
-Delimitador na linha 5: {
+Operador Aritmético na linha 7: ≪ -- ≫
 --------------------
-Operador Aritmético na linha 6: ++
+Delimitador na linha 7: ≪ ; ≫
 --------------------
-Operador Aritmético na linha 6: +
---------------------
-Delimitador na linha 6: ;
---------------------
-Operador Aritmético na linha 7: --
---------------------
-Delimitador na linha 7: ;
---------------------
-Delimitador na linha 8: }
+Delimitador na linha 8: ≪ } ≫
 --------------------
 Analise Léxica concluida, não houve erros apresentados!

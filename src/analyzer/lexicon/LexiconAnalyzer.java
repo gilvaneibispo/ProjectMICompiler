@@ -178,7 +178,6 @@ public class LexiconAnalyzer {
                 /* Verifocando uma cadeia de caracteres [a string] */
                 if (this.line_characters[i] == '\"') {
 
-                    //this.analystMaker(string_buffer, this.line_count);
                     string_buffer.append("\"");
 
                     for (int k = id_next_item; k < this.line_characters.length; k++) {
@@ -191,12 +190,8 @@ public class LexiconAnalyzer {
                     }
 
                     this.analystMaker(string_buffer, this.line_count);
-                    //string_buffer = new StringBuilder();
-                    //string_buffer.delete(0, string_buffer.length());
                 } else if (this.line_characters[i] == '/') {
 
-                    /* Verificando a existencia de comentários */
-                    //this.analystMaker(string_buffer, this.line_count);
                     string_buffer = new StringBuilder().append("/");
                     int temp_lc = this.line_count;
 
@@ -257,19 +252,15 @@ public class LexiconAnalyzer {
                     string_buffer = new StringBuilder();
                 } else if (this.line_characters[i] == '+') {
 
-                    //this.analystMaker(string_buffer, this.line_count);
-                    string_buffer = new StringBuilder().append(this.line_characters[i]);
-
                     if (id_next_item < this.line_characters.length
                             && this.line_characters[id_next_item] == '+') {
 
-                        //string_buffer.append(this.line_characters[id_next_item]);
-                        //i++;
-                        if(this.buildOperator('+', id_next_item)) i++;
+                        if (this.buildOperator('+', id_next_item)) {
+                            i++;
+                        }
                     }
                 } else if (this.line_characters[i] == '-') {
 
-                    //this.analystMaker(string_buffer, this.line_count);
                     string_buffer = new StringBuilder().append('-');
 
                     /* rever os proximos três blocos de códigos, projetar melhor */
@@ -322,9 +313,9 @@ public class LexiconAnalyzer {
 
                             break;
                         } else if (this.line_characters[id_next_item] == '-') {
+                            
                             string_buffer.append('-');
                             i++;
-                            //this.analystMaker(string_buffer, this.line_count);
                         } else {
                             buffer_temp = new StringBuilder();
                             break;
@@ -339,12 +330,6 @@ public class LexiconAnalyzer {
                     this.analystMaker(string_buffer, this.line_count);
                     string_buffer = new StringBuilder();
 
-                } else if (Helper.isAlgo(this.line_characters[i])) {
-
-                    this.analystMaker(string_buffer, this.line_count);
-                    this.analystMaker(new StringBuilder().append(this.line_characters[i]), this.line_count);
-                    string_buffer = new StringBuilder();
-
                 } else if (this.line_characters[i] == '<'
                         || this.line_characters[i] == '>'
                         || this.line_characters[i] == '='
@@ -356,41 +341,28 @@ public class LexiconAnalyzer {
                     if (id_next_item < this.line_characters.length && this.line_characters[id_next_item] == '=') {
 
                         string_buffer.append(this.line_characters[id_next_item]);
+                        i++;
                     }
 
                     this.analystMaker(string_buffer, this.line_count);
                     string_buffer = new StringBuilder();
                 } else if (this.line_characters[i] == '&') {
-                    
-                    if(this.buildOperator('&', id_next_item)) i++;
 
-                    /* Operador lógico && */
-                    //this.analystMaker(string_buffer, this.line_count);
-                    /*string_buffer = new StringBuilder().append(this.line_characters[i]);
-
-                    if (id_next_item < this.line_characters.length && this.line_characters[id_next_item] == '&') {
-
-                        string_buffer.append(this.line_characters[id_next_item]);
+                    if (this.buildOperator('&', id_next_item)) {
                         i++;
                     }
 
-                    this.analystMaker(string_buffer, this.line_count);
-                    string_buffer = new StringBuilder();*/
                 } else if (this.line_characters[i] == '|') {
-                    if(this.buildOperator('|', id_next_item)) i++;
-                    /* Operador lógico || */
-                    //this.analystMaker(string_buffer, this.line_count);
-                    /*string_buffer = new StringBuilder().append(this.line_characters[i]);
-
-                    if (id_next_item < this.line_characters.length
-                            && this.line_characters[id_next_item] == '|') {
-
-                        string_buffer.append(this.line_characters[id_next_item]);
+                    
+                    if (this.buildOperator('|', id_next_item)) {
                         i++;
-                    }
+                    }                    
+                } else if (Helper.isAlgo(this.line_characters[i])) {
 
                     this.analystMaker(string_buffer, this.line_count);
-                    string_buffer = new StringBuilder();*/
+                    this.analystMaker(new StringBuilder().append(this.line_characters[i]), this.line_count);
+                    string_buffer = new StringBuilder();
+
                 } else {
 
                     string_buffer.append(this.line_characters[i]);
@@ -398,7 +370,6 @@ public class LexiconAnalyzer {
             }
 
             this.analystMaker(string_buffer, this.line_count);
-            //this.line = buffer.readLine();
 
         } catch (IOException ex) {
             //Logger.getLogger(ALexico.class.getName()).log(Level.SEVERE, null, ex);
@@ -406,6 +377,7 @@ public class LexiconAnalyzer {
     }
 
     private boolean buildOperator(char character, int id_next_item) {
+
         StringBuilder string_buffer = new StringBuilder().append(character);
         boolean rt = false;
 

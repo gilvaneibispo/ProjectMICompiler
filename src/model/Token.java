@@ -42,6 +42,6 @@ public class Token {
     @Override
     public String toString(){
       //Exempo de linha de saída -> String na linha 17: "casa nossa"
-        return this.description + " na linha " + this.line_token + ": " + this.getName();
+        return this.description + " na linha " + this.line_token + ": ≪ " + this.getName() + " ≫";
     }
 }

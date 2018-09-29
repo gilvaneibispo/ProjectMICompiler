@@ -2,6 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Gilvanei/Documents/NetBeansProjects/Compiler/ProjectMICompiler/src/util/Helper.java</file>
+            <file>file:/C:/Users/Gilvanei/Documents/NetBeansProjects/Compiler/ProjectMICompiler/src/compiler/MainClass.java</file>
+            <file>file:/C:/Users/Gilvanei/Documents/NetBeansProjects/Compiler/ProjectMICompiler/src/analyzer/lexicon/LexiconAnalyzer.java</file>
+            <file>file:/C:/Users/Gilvanei/Documents/NetBeansProjects/Compiler/ProjectMICompiler/src/model/Token.java</file>
+            <file>file:/C:/Users/Gilvanei/Documents/NetBeansProjects/Compiler/ProjectMICompiler/src/util/Debug.java</file>
+        </group>
     </open-files>
 </project-private>
