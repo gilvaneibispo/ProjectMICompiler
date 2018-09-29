@@ -1,0 +1,8 @@
+if(casa == lua && lua != 9){
+	lua = 3;
+}else if(casa <= lua || casa >= lua){
+	casa = 4;
+}else{
+	lua++;
+	casa--;
+}

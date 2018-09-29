@@ -1,4 +1,4 @@
-package analyzer.lexicon;
+package util;
 
 /**
  * @author Gilvanei Bispo
@@ -6,13 +6,13 @@ package analyzer.lexicon;
 public class Helper {
 
     //"\\x09|\\x0A|\\x0B|\\x20"
-    public static final String RESERVED_WORD = "class|final|if|else|for|scan|print|int|float|bool|true|false|string";
+    public static final String RESERVED_WORD = "class|const|variables|method|return|main|if|then|else|while|read|write|void|int|float|bool|string|true|false|extends";
     public static final String IDENTIFIER = "^[a-zA-Z](\\w)*";
     public static final String NUMBER = "[\\-]?(\\d)+(\\.\\d+)?";
     public static final String COMMENT_IN_LINE = "^//.*";
     public static final String BLOCK_COMMENT = "^(/\\*).*(\\*/)$";
-    public static final String ARITHMETIC_OPERATOR = "\\+|\\-|\\*|/|%";
-    public static final String RELATIONAL_OPERATOR = "\\!\\=|\\=|\\<|\\<\\=|\\>|\\>\\=";
+    public static final String ARITHMETIC_OPERATOR = "\\+|\\-|\\*|/|\\+\\+|\\-\\-";
+    public static final String RELATIONAL_OPERATOR = "\\!\\=|\\=|\\<|\\<\\=|\\>|\\>\\=|\\=\\=";
     public static final String LOGICAL_OPERATOR = "\\!|\\&\\&|\\|\\|";
     public static final String DELIMITER = ";|:|,|\\(|\\)|\\[|\\]|\\{|\\}";
     public static final String CHARACTER_CHAIN = "\"[\\x20-\\x21\\x23-\\x7E\\x5C\\x22]*\"";
@@ -20,7 +20,8 @@ public class Helper {
     public static final String NUMBER_FAILED_1 = "[\\-]?(\\d)+(\\..*)?";
     public static final String NUMBER_FAILED_2 = "[\\-]?(\\.\\d+)?";
     public static final String BLOCK_COMMENT_2 = "^(/\\*).*";
-
+    public static final String TERMINALS = "+|%|*|;|,|(|)|[|]|{|}|:|=|!|9|10|13|32|58";
+    
     /* terminais */
     public static boolean isAlgo(char item_char) {
         return item_char == 9
@@ -43,12 +44,9 @@ public class Helper {
                 || item_char == '!'
                 || item_char == 58;
     }
-    
-    public static String isNielson(){
-        return "URI de nielson";
-    }
-    
-    public static String isGilvanei(){
-        return "C:\\Users\\Gilvanei\\Documents\\NetBeansProjects\\Compiler\\ProjectMICompiler\\src\\files\\input";
+        
+    public static String getURICurrentUser(){
+        
+        return System.getProperty("user.dir") + "\\src\\files\\input";
     }
 }

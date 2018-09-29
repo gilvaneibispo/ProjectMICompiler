@@ -1,5 +1,6 @@
 package analyzer.lexicon;
 
+import util.Helper;
 import model.Token;
 import exception.CommentFormException;
 import java.io.BufferedReader;
@@ -23,7 +24,7 @@ public class LexiconAnalyzer {
     private char line_characters[];
     private ArrayList<Token> lexemas;
     private File file;
-    private  int count_error;
+    private int count_error;
     //ArrayList<Token> tokens = new ArrayList();
 
     public LexiconAnalyzer() throws IOException {
@@ -105,7 +106,7 @@ public class LexiconAnalyzer {
                     this.count_error++;
                     lexemas.add(new Token(lexema, "Erro: Número mal formado", local_line_count));
                 } else if (lexema.matches(Helper.CHARACTER_CHAIN_FAILED)) {
-                    
+
                     this.count_error++;
                     lexemas.add(new Token(lexema, "Erro: String mal formado", local_line_count));
                 } else if (lexema.matches(Helper.CHARACTER_CHAIN)) {
@@ -113,7 +114,7 @@ public class LexiconAnalyzer {
                 } else if (lexema.matches(Helper.CHARACTER_CHAIN)) {
 
                 } else {
-                    
+
                     lexemas.add(new Token(lexema, "Expressão não identificada", local_line_count));
                 }
             }
@@ -121,8 +122,6 @@ public class LexiconAnalyzer {
     }
 
     private void errorPrinter() throws IOException {
-
-       
 
         String output_file_path = this.file.getParentFile().getParentFile() + "\\output";
         String output_file_name = "output_lexicon_for_" + this.file.getName();
@@ -256,6 +255,18 @@ public class LexiconAnalyzer {
 
                     this.analystMaker(string_buffer, temp_lc);
                     string_buffer = new StringBuilder();
+                } else if (this.line_characters[i] == '+') {
+
+                    //this.analystMaker(string_buffer, this.line_count);
+                    string_buffer = new StringBuilder().append(this.line_characters[i]);
+
+                    if (id_next_item < this.line_characters.length
+                            && this.line_characters[id_next_item] == '+') {
+
+                        //string_buffer.append(this.line_characters[id_next_item]);
+                        //i++;
+                        if(this.buildOperator('+', id_next_item)) i++;
+                    }
                 } else if (this.line_characters[i] == '-') {
 
                     //this.analystMaker(string_buffer, this.line_count);
@@ -310,6 +321,10 @@ public class LexiconAnalyzer {
                         } else if (Character.toString(this.line_characters[k]).matches(Helper.DELIMITER)) {
 
                             break;
+                        } else if (this.line_characters[id_next_item] == '-') {
+                            string_buffer.append('-');
+                            i++;
+                            //this.analystMaker(string_buffer, this.line_count);
                         } else {
                             buffer_temp = new StringBuilder();
                             break;
@@ -346,9 +361,12 @@ public class LexiconAnalyzer {
                     this.analystMaker(string_buffer, this.line_count);
                     string_buffer = new StringBuilder();
                 } else if (this.line_characters[i] == '&') {
+                    
+                    if(this.buildOperator('&', id_next_item)) i++;
 
+                    /* Operador lógico && */
                     //this.analystMaker(string_buffer, this.line_count);
-                    string_buffer = new StringBuilder().append(this.line_characters[i]);
+                    /*string_buffer = new StringBuilder().append(this.line_characters[i]);
 
                     if (id_next_item < this.line_characters.length && this.line_characters[id_next_item] == '&') {
 
@@ -357,11 +375,12 @@ public class LexiconAnalyzer {
                     }
 
                     this.analystMaker(string_buffer, this.line_count);
-                    string_buffer = new StringBuilder();
+                    string_buffer = new StringBuilder();*/
                 } else if (this.line_characters[i] == '|') {
-
-                    this.analystMaker(string_buffer, this.line_count);
-                    string_buffer = new StringBuilder().append(this.line_characters[i]);
+                    if(this.buildOperator('|', id_next_item)) i++;
+                    /* Operador lógico || */
+                    //this.analystMaker(string_buffer, this.line_count);
+                    /*string_buffer = new StringBuilder().append(this.line_characters[i]);
 
                     if (id_next_item < this.line_characters.length
                             && this.line_characters[id_next_item] == '|') {
@@ -371,7 +390,7 @@ public class LexiconAnalyzer {
                     }
 
                     this.analystMaker(string_buffer, this.line_count);
-                    string_buffer = new StringBuilder();
+                    string_buffer = new StringBuilder();*/
                 } else {
 
                     string_buffer.append(this.line_characters[i]);
@@ -384,5 +403,19 @@ public class LexiconAnalyzer {
         } catch (IOException ex) {
             //Logger.getLogger(ALexico.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private boolean buildOperator(char character, int id_next_item) {
+        StringBuilder string_buffer = new StringBuilder().append(character);
+        boolean rt = false;
+
+        if (id_next_item < this.line_characters.length && this.line_characters[id_next_item] == character) {
+
+            string_buffer.append(this.line_characters[id_next_item]);
+            rt = true;
+        }
+
+        this.analystMaker(string_buffer, this.line_count);
+        return rt;
     }
 }

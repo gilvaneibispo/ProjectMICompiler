@@ -1,6 +1,6 @@
 package compiler;
 
-import analyzer.lexicon.Helper;
+import util.Helper;
 import java.io.File;
 import java.io.IOException;
 import util.Debug;
@@ -10,7 +10,7 @@ import util.Debug;
  */
 public class MainClass {
 
-    private static final String DIR = Helper.isGilvanei();
+    private static final String DIR = Helper.getURICurrentUser();
     private static Facade FACADE = Facade.getInstance();
 
     public static void main(String args[]) throws IOException {
@@ -19,7 +19,10 @@ public class MainClass {
 
         File base_dir = new File(DIR);
         System.out.println("Diretório: " + base_dir.getName());
-
+        
+        
+        
+System.out.println(System.getProperty("user.dir"));
         /* Verificar tbm se é um caminho válido e se tá vazio */
         if (base_dir.isDirectory() && base_dir.exists()) {
 
